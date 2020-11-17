@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'LogIn1.ui'
-#
+#vfvcb
 # Created by: PyQt5 UI code generator 5.15.1
 #
 # WARNING: Any manual changes made to this file will be lost when pyuic5 is
@@ -16,10 +16,17 @@ import sqlite3
 class Ui_MainWindow(object):
     name = ""
     password = ""
-    conn = sqlite3.connect('users.db')
+    def setupBd(self):
+        key = self.generateKey()
+        keyFile = open(".key", "w")
+        keyFile.write(str (key))
+        keyFile.close()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(480, 854)
+
+        self.tableExist("users")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -36,16 +43,19 @@ class Ui_MainWindow(object):
         self.labelName.setAlignment(QtCore.Qt.AlignCenter)
         self.labelName.setObjectName("labelName")
         self.verticalLayout.addWidget(self.labelName)
-        self.textEditP = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.textEditP.setObjectName("textEditP")
-        self.verticalLayout.addWidget(self.textEditP)
+
+        self.textEditN = QtWidgets.QTextEdit(self.verticalLayoutWidget)
+        self.textEditN.setObjectName("textEditN")
+        self.verticalLayout.addWidget(self.textEditN)
+
         self.labelPassWord = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.labelPassWord.setAlignment(QtCore.Qt.AlignCenter)
         self.labelPassWord.setObjectName("labelPassWord")
         self.verticalLayout.addWidget(self.labelPassWord)
-        self.textEditN = QtWidgets.QTextEdit(self.verticalLayoutWidget)
-        self.textEditN.setObjectName("textEditN")
-        self.verticalLayout.addWidget(self.textEditN)
+
+        self.textEditP = QtWidgets.QTextEdit(self.verticalLayoutWidget)
+        self.textEditP.setObjectName("textEditP")
+        self.verticalLayout.addWidget(self.textEditP)
         
         self.pushButtonLogIn = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonLogIn.setGeometry(QtCore.QRect(130, 250, 75, 21))
@@ -62,30 +72,34 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def buttonClikLogIn(self):
-        name = self.textEditN.toPlainText()
-        password = self.textEditP.toPlainText()
-        self.createUser(name, password)
+        #name = self.textEditN.toPlainText()
+        #password = self.textEditP.toPlainText()
+        self.pwdEncrypt(self.textEditP.toPlainText())
+        self.createUser(self.textEditN.toPlainText(), self.textEditP.toPlainText())
 
     def buttonClikGuest(self):
         pass
         
     def testConnect(self):
+        conn = sqlite3.connect('users.db') 
         c = self.conn.cursor()
-        self.conn.commit()
-        self.conn.close()
+        conn.commit()
+        conn.close()
 
     def createUser(self, username, password):
-        c = self.conn.cursor()
+        conn = sqlite3.connect('users.db') 
+        c = conn.cursor()
         #c.execute("DROP TABLE users")
-        c.execute("select id from users where id=?", (98,))
+        c.execute("select username from users where username=?", (username,))
         data = c.fetchall()
         if not data:
             print ('not found')
-            c.execute("insert into users values ( ?, ?, ?)",(98,username,password))
+            #c.execute("insert into users values (?, ?, ?)",(username,password))
+            c.execute("INSERT INTO users(username, pwd) VALUES (?,?)", (username, password))
         else:
             print ('found')
-        self.conn.commit()
-        #self.conn.close()
+        conn.commit()
+        conn.close()
         
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -95,20 +109,36 @@ class Ui_MainWindow(object):
         self.labelPassWord.setText(_translate("MainWindow", "PassWord"))
         self.pushButtonLogIn.setText(_translate("MainWindow", "LogIn"))
         self.pushButtonGuest.setText(_translate("MainWindow", "Join as guest"))
-        
+    
+    def generateKey(self):
+        key = Fernet.generate_key() 
+        return Fernet(key)
+
     def pwdEncrypt(self, oldPwd):
         # key is generated 
         key = Fernet.generate_key()  
         # value of key is assigned to a variable 
         f = Fernet(key) 
-        # the plaintext is converted to ciphertext 
-        token = f.encrypt(b"welcome to geeksforgeeks") 
+        # the plaintext is converted to ciphertext
+        token = f.encrypt(oldPwd.encode()) 
         # display the ciphertext 
         print(token) 
         # decrypting the ciphertext 
-        d = f.decrypt(token) 
-        # display the plaintext 
-        print(d) 
+        d = f.decrypt(token)
+        # display the plaintext
+        print(d)
+    
+    def tableExist(self, tablename):
+        conn = sqlite3.connect('users.db')
+        c = conn.cursor()
+        #c.execute("SELECT * FROM users WHERE type='table' AND name='{tablename}'")
+        c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username STRING, pwd BIGINT)")                                       
+        data = c.fetchall()
+        if not data:
+            print ('table no existir')
+        else:
+            print ('table exist')
+        conn.close()
 
 if __name__ == "__main__":
     import sys
@@ -116,6 +146,9 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
+    #ui.setupBd()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+
