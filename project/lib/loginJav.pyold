@@ -1,0 +1,79 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMainWindow, QWidget
+from PyQt5.QtGui import QIcon, QPixmap
+import sqlite3
+
+class login_window(QMainWindow):
+    def setupBd(self):
+        self.createTable("users.db")
+        
+    def setupUi(self):
+        self.rootWT = QWidget()
+        self.childWT = QWidget()
+        self.centralHLay = QtWidgets.QHBoxLayout()
+        self.centralHLay.setObjectName("CentralHLayout")
+        self.centralVLay = QtWidgets.QVBoxLayout()
+        self.centralVLay.setObjectName("CentralVLayout")
+        
+        self.lab = QtWidgets.QLabel()
+        self.lab.setText("asdasdas")
+        self.lab2 = QtWidgets.QLabel()
+        self.lab2.setText("12345")
+        self.login = QtWidgets.QLabel()
+        self.login.setText("Login")
+        
+        self.centralHLay.addWidget(self.lab)
+        self.centralHLay.addWidget(self.lab2)
+        self.childWT.setLayout(self.centralHLay)
+        self.centralVLay.addWidget(self.login)
+        self.centralVLay.addWidget(self.childWT)
+        self.rootWT.setLayout(self.centralVLay)
+        self.setCentralWidget(self.rootWT)
+
+    def buttonClikLogIn(self):
+        self.verifyUser(self.lineEditName.text(), hash(self.lineEditPassword.text()))
+
+    def buttonClikGuest(self):
+        #NOT implemented
+        pass
+
+    def verifyUser(self, username, password):
+        conn = sqlite3.connect('users.db') 
+        c = conn.cursor()
+        c.execute("select username from users where username=?", (username,))
+        data = c.fetchall()
+        if not data:
+            print ('Incorrect user or password')
+        else:
+            #NOT implemented
+            print ('found')
+        conn.commit()
+        conn.close()
+
+    def createUser(self, username, password):
+        conn = sqlite3.connect('users.db') 
+        c = conn.cursor()
+        c.execute("select username from users where username=?", (username,))
+        data = c.fetchall()
+        if not data:
+            #print ('not found')
+            c.execute("INSERT INTO users(username, pwd) VALUES (?,?)", (username, password))
+        #else:
+            #print ('found')
+        conn.commit()
+        conn.close()
+
+    def createTable(self, tablename):
+        conn = sqlite3.connect(tablename)
+        c = conn.cursor()
+        c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username STRING, pwd BIGINT)")                                       
+        conn.close()
+        
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    login = login_window()
+    login.setupBd()
+    login.setupUi()
+    login.show()
+    sys.exit(app.exec_())
