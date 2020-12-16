@@ -1,81 +1,39 @@
 # importing libraries 
 from PyQt5.QtWidgets import * 
-from PyQt5 import QtCore, QtGui 
+from PyQt5 import QtCore, QtGui, uic
 from PyQt5.QtGui import * 
 from PyQt5.QtCore import * 
-import sys 
+import sys, os
 
-class Chrono(QWidget):   
+class Chrono(QWidget):
+    #laptimes values : Minute-Second-Decisecond
+    lapTimes = [[0,0,0],[0,0,0],[0,0,0]]
+    lapCount = 1
+    finishedLap = [False] * 3
+    second = 0
+    decisecond = 0
+    minute = 0
+    # creating flag 
+    flag = False 
+    
     def __init__(self): 
-        super().__init__()   
-        # setting title 
-        self.setWindowTitle("Python Stop watch")   
-        # setting geometry 
-        self.setGeometry(100, 100, 400, 500)   
+        super().__init__()
+        os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/res")
+        # Importing the UI
+        uic.loadUi('CronometreUIdef.ui', self) # Load the .ui file
         # calling method 
         self.UiComponents()   
         # showing all the widgets 
-        self.show() 
+        #self.show() 
 
     # method for widgets 
     def UiComponents(self):
-        #laptimes values : Minute-Second-Decisecond
-        self.lapTimes = [[0,0,0],[0,0,0],[0,0,0]]
-        self.lapCount = 1
-        self.finishedLap = [False] * 3
-        self.second = 0
-        self.decisecond = 0
-        self.minute = 0
-        # creating flag 
-        self.flag = False
-        # creating a label to show the time 
-        self.label = QLabel(self)
-        self.lap1 = QLabel(self) 
-        self.lap2 = QLabel(self)
-        self.lap3 = QLabel(self)
-        # setting geometry of label 
-        self.label.setGeometry(75, 100, 250, 70)
-        self.lap1.setGeometry(75, 175, 250, 20)
-        self.lap2.setGeometry(75, 200, 250, 20) 
-        self.lap3.setGeometry(75, 225, 250, 20) 
-        # adding border to the label 
-        self.label.setStyleSheet("border : 4px solid black;") 
-        self.lap1.setStyleSheet("border : 2px solid black;") 
-        self.lap2.setStyleSheet("border : 2px solid black;") 
-        self.lap3.setStyleSheet("border : 2px solid black;") 
-        # setting text to the label 
-        self.label.setText("00:00") 
-        self.lap1.setText("00:00")
-        self.lap2.setText("00:00")
-        self.lap3.setText("00:00")
-        # setting font to the label 
-        self.label.setFont(QFont('Arial', 25)) 
-        self.lap1.setFont(QFont('Arial', 10)) 
-        self.lap2.setFont(QFont('Arial', 10)) 
-        self.lap3.setFont(QFont('Arial', 10)) 
-        # setting alignment to the text of label 
-        self.label.setAlignment(Qt.AlignCenter) 
-        self.lap1.setAlignment(Qt.AlignLeft) 
-        self.lap2.setAlignment(Qt.AlignLeft) 
-        self.lap3.setAlignment(Qt.AlignLeft) 
-        # creating start button 
-        self.start = QPushButton("Start", self) 
-        # setting geometry to the button 
-        self.start.setGeometry(125, 250, 150, 40) 
         # add action to the method 
         self.start.pressed.connect(self.Start) 
-        # creating pause button 
-        pause = QPushButton("Pause", self) 
-        # setting geometry to the button 
-        pause.setGeometry(125, 300, 150, 40) 
         # add action to the method 
-        pause.pressed.connect(self.Pause) 
-        # creating reset button 
-        re_set = QPushButton("Re-set", self) 
-        # setting geometry to the button 
-        re_set.setGeometry(125, 350, 150, 40) 
+        self.pause.pressed.connect(self.Pause) 
         # add action to the method 
-        re_set.pressed.connect(self.Re_set) 
+        self.re_set.pressed.connect(self.Re_set) 
         # creating a timer object 
         timer = QTimer(self) 
         # adding action to timer 
@@ -142,13 +100,10 @@ class Chrono(QWidget):
         self.second = 0
         self.minute = 0
         self.lapCount = 1
-        for lap in self.lapTimes:
-            print (lap)
         for i in range(3):
+            self.finishedLap[i] = False
             self.lapTimes[i][0] = 0
             self.lapTimes[i][1] = 0
             self.lapTimes[i][2] = 0
-        for lap in self.lapTimes:
-            print (lap)  
         # setting text to label 
         self.label.setText("00:00")

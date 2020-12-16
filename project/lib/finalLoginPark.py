@@ -11,20 +11,19 @@ class Ui(QMainWindow):
     def __init__(self):
         super(Ui, self).__init__() # Call the inherited classes __init__ method
         os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/res")
-        uic.loadUi('testLoginJav.ui', self) # Load the .ui file
+        uic.loadUi('LoginUIdef.ui', self) # Load the .ui file
         self.createTable()
         self.setupUi()
-        self.show() # Show the GUI
+        #self.show() # Show the GUI
         
     def setupUi(self):
-        self.loginButton.clicked.connect(lambda: self.verifyUser(self.userLineField.text(), hash(self.passLineField.text())))
-        self.guestButton.clicked.connect(lambda: self.openGuestChrono())
+        pass
+        #self.loginButton.clicked.connect(lambda: self.logUser())
+        #self.guestButton.clicked.connect(lambda: self.openGuestChrono())
         
-    def openGuestChrono(self):
-        chrono = Chrono() # Create an instance of our class
-        print("Opening...")
-        chrono.show()
-        print("Done!")
+    def logUser(self):
+        resul = self.verifyUser(self.userLineField.text(), self.passLineField.text())
+        return resul
         
     def createConnection(self):
         try:
@@ -42,7 +41,7 @@ class Ui(QMainWindow):
             c = conn.cursor()
             try:
                 c.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, username varchar(100), password varchar(100));")
-                c.execute("insert into users (id, username, password) values (0,'admin','" + str(hash("admin")) + "');")   
+                c.execute("insert into users (id, username, password) values (0,'admin','" + "1234" + "');")   
             except sqlite3.DatabaseError as e:
                 print(e) 
             conn.commit()                                
@@ -54,18 +53,14 @@ class Ui(QMainWindow):
         c.execute("select username from users where username='" + username + "';")
         data1 = c.fetchall()
         if not data1:
-            print ('Incorrect user or password')
+            return 2    #Wrong user and pass
         else:
-            c.execute("select username from users where username='" + username + "' and password='" + str(hash(password)) + "';")
+            c.execute("select username from users where username='" + str(username) + "' and password='" + str(password) + "';")
             data2 = c.fetchall()
             if not data2:
-                print ('Incorrect password')
+                return 1    #Wrong Pass
             else:
-                print ('found')
-                #chrono = QWidget(self)
-                chrono = chronoAPI
-                chronoWindow = chrono.Window()
-                chronoWindow.show()
+                return 0    #User Found
         conn.commit()
         conn.close()
         
