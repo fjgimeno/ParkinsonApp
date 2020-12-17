@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QKeySequence
 import sqlite3
 import os
 import sys
@@ -39,29 +40,37 @@ class Window(QMainWindow):
     def login(self):
         result = self.loginWidget.logUser()
         if result == 0:
-            print("Found")
             self.toUserChronoWindow()
-        elif result == 1:
-            print("Wrong pass")
-        else: 
-            print("Wrong user and pass") 
         
     def setupUi(self):
         self.setWindowTitle("Parkinson App")
         #self.setFixedSize(854, 480)
         self.setMinimumSize(854, 480)
-        toolbar = QToolBar("Toolbar")
-        login_action = QAction("To Login", self)
-        login_action.setStatusTip("Dev button to open login button")
-        login_action.triggered.connect(lambda: self.toLoginWindow())
-        toolbar.addAction(login_action)
-        chrono_action = QAction("To Guest Chrono", self)
-        chrono_action.setStatusTip("Dev button to open chrono button")
-        chrono_action.triggered.connect(lambda: self.toGuestChronoWindow())
+        #Setups the menu bar
+        self.setupMenuBar()
+        self.setObjectName("window")
+        self.setStyleSheet("QMainWindow#window {background-image: url(testtiled.png); background-attachment: fixed}; width: auto; height: auto;")
         self.setupButtons()
-        #self.
-        toolbar.addAction(chrono_action)
-        self.addToolBar(toolbar)
+        self.setCentralWidget(self.loginWidget)
+        
+    def setupMenuBar(self):
+        self.devLoginAction = QAction(self)
+        self.devLoginAction.setText("&To login widget")
+        self.devLoginAction.triggered.connect(self.toLoginWindow)
+        self.devChronoAction = QAction(self)
+        self.devChronoAction.setText("&To chrono widget")
+        self.devChronoAction.triggered.connect(self.toUserChronoWindow)
+        self.devGuestChronoAction = QAction(self)
+        self.devGuestChronoAction.setText("&To chrono widget")
+        self.devGuestChronoAction.triggered.connect(self.toGuestChronoWindow)
+        devMenu = QMenu("&Dev", self)
+        menuBar = QMenuBar()
+        menuBar.addMenu(devMenu)
+        devMenu.addAction(self.devLoginAction)
+        devMenu.addAction(self.devChronoAction)
+        devMenu.addAction(self.devGuestChronoAction)
+        self.setMenuBar(menuBar)
+
         
     def setupButtons(self):
         self.chronoWidget = Chrono()

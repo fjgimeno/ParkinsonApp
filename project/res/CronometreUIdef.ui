@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>parentForm</class>
+ <widget class="QWidget" name="parentForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,102 +14,86 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget { background-color: rgb(32,32,32); }</string>
+   <string notr="true"/>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>100</y>
-     <width>221</width>
-     <height>51</height>
+     <x>30</x>
+     <y>20</y>
+     <width>791</width>
+     <height>431</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">QLabel{
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">QLabel{
 border : 2px solid white;
 font-size: 30px;
 color: white;
+background-color: rgb(32,32,32);
 }</string>
-   </property>
-   <property name="text">
-    <string>00:00</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lap1">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>160</y>
-     <width>221</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLabel{
+        </property>
+        <property name="text">
+         <string>00:00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lap1">
+        <property name="styleSheet">
+         <string notr="true">QLabel{
 border : 2px solid white;
-
+background-color: rgb(32,32,32);
 color: white;
 }</string>
-   </property>
-   <property name="text">
-    <string>Lap1: 00:00</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lap2">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>200</y>
-     <width>221</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLabel{
+        </property>
+        <property name="text">
+         <string>Lap1: 00:00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lap2">
+        <property name="styleSheet">
+         <string notr="true">QLabel{
 border : 2px solid white;
-
+background-color: rgb(32,32,32);
 color: white;
 }</string>
-   </property>
-   <property name="text">
-    <string>Lap2: 00:00</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lap3">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>240</y>
-     <width>221</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLabel{
+        </property>
+        <property name="text">
+         <string>Lap2: 00:00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lap3">
+        <property name="styleSheet">
+         <string notr="true">QLabel{
 border : 2px solid white;
-
+background-color: rgb(32,32,32);
 color: white;
 }</string>
-   </property>
-   <property name="text">
-    <string>Lap3: 00:00</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="start">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>290</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
+        </property>
+        <property name="text">
+         <string>Lap3: 00:00</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QPushButton" name="start">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
 border-style: outset;
 border-width: 2px;
     border-radius: 10px;
@@ -117,22 +101,16 @@ background-color: rgb(132,132,132);
 font-size: 25px;
 color: rgb(255,255,255);
 }</string>
-   </property>
-   <property name="text">
-    <string>Start</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pause">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>290</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
+          </property>
+          <property name="text">
+           <string>Start</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="re_set">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
 border-style: outset;
 border-width: 2px;
     border-radius: 10px;
@@ -140,22 +118,16 @@ background-color: rgb(132,132,132);
 font-size: 25px;
 color: rgb(255,255,255);
 }</string>
-   </property>
-   <property name="text">
-    <string>Pause</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="re_set">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>330</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
+          </property>
+          <property name="text">
+           <string>Re-set</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pause">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
 border-style: outset;
 border-width: 2px;
     border-radius: 10px;
@@ -163,37 +135,20 @@ background-color: rgb(132,132,132);
 font-size: 25px;
 color: rgb(255,255,255);
 }</string>
-   </property>
-   <property name="text">
-    <string>Re-set</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textEdit">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>100</y>
-     <width>221</width>
-     <height>211</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QTextEdit{
-color: rgb(255,255,255);
-}</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonSubmitComment">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>330</y>
-     <width>221</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
+          </property>
+          <property name="text">
+           <string>Pause</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QPushButton" name="pushButtonSubmitComment">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
 border-style: outset;
 border-width: 2px;
     border-radius: 10px;
@@ -201,22 +156,16 @@ background-color: rgb(132,132,132);
 font-size: 25px;
 color: rgb(255,255,255);
 }</string>
-   </property>
-   <property name="text">
-    <string>submit comment</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButtonClear">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>330</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
+          </property>
+          <property name="text">
+           <string>submit comment</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonClear">
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
 border-style: outset;
 border-width: 2px;
     border-radius: 10px;
@@ -224,10 +173,27 @@ background-color: rgb(132,132,132);
 font-size: 25px;
 color: rgb(255,255,255);
 }</string>
-   </property>
-   <property name="text">
-    <string>Clear</string>
-   </property>
+          </property>
+          <property name="text">
+           <string>Clear</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="commentBox">
+      <property name="styleSheet">
+       <string notr="true">QTextEdit{
+color: rgb(255,255,255);
+background-color: rgb(32,32,32);
+}</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

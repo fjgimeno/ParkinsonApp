@@ -1,6 +1,5 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QMainWindow
-from PyQt5.QtGui import QKeySequence
 import sqlite3
 import asyncio
 import os
@@ -12,23 +11,20 @@ class Ui(QMainWindow):
     def __init__(self):
         super(Ui, self).__init__() # Call the inherited classes __init__ method
         os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/res")
-        uic.loadUi('LoginUIdef.ui', self) # Load the .ui file
+        uic.loadUi('testLoginJav.ui', self) # Load the .ui file
         self.createTable()
         self.setupUi()
-        #self.show() # Show the GUI
+        self.show() # Show the GUI
         
     def setupUi(self):
-        self.forgotPassButton.clicked.connect(lambda: self.restorePwd())
-        pass
-        #self.loginButton.clicked.connect(lambda: self.logUser())
-        #self.guestButton.clicked.connect(lambda: self.openGuestChrono())
-    
-    def restorePwd(self):
-        self.labelInfo.setText("To restore a user's password, please log-in as administrator.")
+        self.loginButton.clicked.connect(lambda: self.verifyUser(self.userLineField.text(), hash(self.passLineField.text())))
+        self.guestButton.clicked.connect(lambda: self.openGuestChrono())
         
-    def logUser(self):
-        resul = self.verifyUser(self.userLineField.text(), self.passLineField.text())
-        return resul
+    def openGuestChrono(self):
+        chrono = Chrono() # Create an instance of our class
+        print("Opening...")
+        chrono.show()
+        print("Done!")
         
     def createConnection(self):
         try:
@@ -46,7 +42,7 @@ class Ui(QMainWindow):
             c = conn.cursor()
             try:
                 c.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, username varchar(100), password varchar(100));")
-                c.execute("insert into users (id, username, password) values (0,'admin','" + "1234" + "');")   
+                c.execute("insert into users (id, username, password) values (0,'admin','" + str(hash("admin")) + "');")   
             except sqlite3.DatabaseError as e:
                 print(e) 
             conn.commit()                                
@@ -58,16 +54,18 @@ class Ui(QMainWindow):
         c.execute("select username from users where username='" + username + "';")
         data1 = c.fetchall()
         if not data1:
-            self.labelInfo.setText("Wrong username and password")
-            return 2    #Wrong user and pass
+            print ('Incorrect user or password')
         else:
-            c.execute("select username from users where username='" + str(username) + "' and password='" + str(password) + "';")
+            c.execute("select username from users where username='" + username + "' and password='" + str(hash(password)) + "';")
             data2 = c.fetchall()
             if not data2:
-                self.labelInfo.setText("Wrong password")
-                return 1    #Wrong Pass
+                print ('Incorrect password')
             else:
-                return 0    #User Found
+                print ('found')
+                #chrono = QWidget(self)
+                chrono = chronoAPI
+                chronoWindow = chrono.Window()
+                chronoWindow.show()
         conn.commit()
         conn.close()
         
