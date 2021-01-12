@@ -7,7 +7,7 @@ class Ui(QMainWindow):
     def __init__(self):
         super(Ui, self).__init__() # Call the inherited classes __init__ method
         os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/res")
-        uic.loadUi('CronometreUIdef.ui', self) # Load the .ui file
+        uic.loadUi('PatientsUidef.ui', self) # Load the .ui file
         self.show() # Show the GUI
         print(os.path.sep)
         print(os.path.dirname(__file__) + os.path.sep + "Manolo.exe")

@@ -20,7 +20,7 @@ class Chrono(QWidget):
         super().__init__()
         os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/res")
         # Importing the UI
-        uic.loadUi('CronometreUIdef.ui', self) # Load the .ui file
+        uic.loadUi('GuestCronometreUIdef.ui', self) # Load the .ui file
         # calling method 
         self.UiComponents()   
         # showing all the widgets 

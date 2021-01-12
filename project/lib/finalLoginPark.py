@@ -1,13 +1,14 @@
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QKeySequence
 import sqlite3
 import asyncio
 import os
 import sys
-from lib.chronoAPI import Chrono
+from lib.chronoUserAPI import Chrono
+from lib.databasemanager import dbMan
 
-class Ui(QMainWindow):
+class Ui(QWidget):
     databaseName = "parkDataBase.db"
     def __init__(self):
         super(Ui, self).__init__() # Call the inherited classes __init__ method
@@ -18,7 +19,6 @@ class Ui(QMainWindow):
         #self.show() # Show the GUI
         
     def setupUi(self):
-        self.forgotPassButton.clicked.connect(lambda: self.restorePwd())
         pass
         #self.loginButton.clicked.connect(lambda: self.logUser())
         #self.guestButton.clicked.connect(lambda: self.openGuestChrono())
@@ -59,15 +59,15 @@ class Ui(QMainWindow):
         data1 = c.fetchall()
         if not data1:
             self.labelInfo.setText("Wrong username and password")
-            return 2    #Wrong user and pass
+            return None
         else:
-            c.execute("select username from users where username='" + str(username) + "' and password='" + str(password) + "';")
+            c.execute("select * from users where username='" + str(username) + "' and password='" + str(password) + "';")
             data2 = c.fetchall()
             if not data2:
                 self.labelInfo.setText("Wrong password")
-                return 1    #Wrong Pass
+                return None
             else:
-                return 0    #User Found
+                return data2[0][0]    #User Found
         conn.commit()
         conn.close()
         
