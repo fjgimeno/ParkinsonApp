@@ -17,7 +17,6 @@ class PatientInfo(QtWidgets.QDialog):
         self.fImage = fImage
         self.bImage = bImage
         info = self.dbManager.getPatientInfo(dni)
-        print(info)
         self.labelName.setText(str(info[3]))#3
         self.labelSurname.setText(str(info[2]))#2
         self.labelDNI.setText(str(info[0]))#0
@@ -28,14 +27,11 @@ class PatientInfo(QtWidgets.QDialog):
         self.labelSex.setText(str(info[9]))#9
         self.labelHeight.setText(str(info[6]))#6
         height = str(info[6])
-        print("height", height)
         self.labelWeight.setText(str(info[7]))#7
         weight = str(info[7])
-        print("weight", weight)
         self.labelDiagnosticDate.setText(str(info[10]))#10
         self.labelParkPhase.setText(str(info[11]))#11
         imc = str(round(((int(weight) / (int(height) * int(height))) * 10000), 2))
-        print("imc", imc)
         self.labelImc.setText(imc)#12
         self.labelMedication.setText(str(info[13]))#13
         
