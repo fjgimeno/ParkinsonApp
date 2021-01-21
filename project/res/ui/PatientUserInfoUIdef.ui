@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>854</width>
-    <height>480</height>
+    <height>618</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -211,8 +211,8 @@
   <widget class="QLabel" name="labelBirthday">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>290</y>
+     <x>100</x>
+     <y>482</y>
      <width>151</width>
      <height>17</height>
     </rect>
@@ -227,8 +227,8 @@
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>290</y>
+     <x>10</x>
+     <y>482</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -243,8 +243,8 @@
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>330</y>
+     <x>9</x>
+     <y>513</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -259,8 +259,8 @@
   <widget class="QLabel" name="labelSex">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>330</y>
+     <x>99</x>
+     <y>513</y>
      <width>131</width>
      <height>17</height>
     </rect>
@@ -332,6 +332,243 @@
      <width>291</width>
      <height>251</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>535</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>Height</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelHeight">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>535</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>563</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>Weight</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelWeight">
+   <property name="geometry">
+    <rect>
+     <x>99</x>
+     <y>563</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>586</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>Birth Date</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelBirthDate">
+   <property name="geometry">
+    <rect>
+     <x>99</x>
+     <y>586</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>315</x>
+     <y>295</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>Diagnostic date</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelDiagnosticDate">
+   <property name="geometry">
+    <rect>
+     <x>405</x>
+     <y>295</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_13">
+   <property name="geometry">
+    <rect>
+     <x>315</x>
+     <y>325</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>Park. Phase</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelParkPhase">
+   <property name="geometry">
+    <rect>
+     <x>405</x>
+     <y>325</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_14">
+   <property name="geometry">
+    <rect>
+     <x>316</x>
+     <y>357</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>IMC</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelImc">
+   <property name="geometry">
+    <rect>
+     <x>406</x>
+     <y>357</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_15">
+   <property name="geometry">
+    <rect>
+     <x>384</x>
+     <y>388</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>Medication</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelMedication">
+   <property name="geometry">
+    <rect>
+     <x>276</x>
+     <y>416</y>
+     <width>290</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel { color: rgb(255,255,255); }</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="saveEditButton">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>560</y>
+     <width>261</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Save edit</string>
    </property>
   </widget>
  </widget>

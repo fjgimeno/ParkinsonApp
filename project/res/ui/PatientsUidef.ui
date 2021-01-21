@@ -44,72 +44,6 @@ color:rgb(255,255,255);
     <string>Select Patient</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labelName">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>270</y>
-     <width>41</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLabel{
-color:rgb(255,255,255);
-}</string>
-   </property>
-   <property name="text">
-    <string>Name</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditName">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>266</y>
-     <width>781</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLineEdit{
-color:rgb(255,255,255);
-}</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelDNI">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>310</y>
-     <width>31</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLabel{
-color:rgb(255,255,255);
-}</string>
-   </property>
-   <property name="text">
-    <string>DNI</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEditDNI">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>306</y>
-     <width>781</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLineEdit{
-color:rgb(255,255,255);
-}</string>
-   </property>
-  </widget>
   <widget class="QComboBox" name="comboBoxResults">
    <property name="geometry">
     <rect>
@@ -138,29 +72,6 @@ color:rgb(255,255,255);
     <string>Previous Results</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonPatient">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>350</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton{
-border-style: outset;
-border-width: 2px;
-    border-radius: 10px;
-background-color: rgb(132,132,132);
-font-size: 25px;
-color: rgb(255,255,255);
-}</string>
-   </property>
-   <property name="text">
-    <string>Submit</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonChrono">
    <property name="geometry">
     <rect>
@@ -184,22 +95,50 @@ color: rgb(255,255,255);
     <string>To Chrono</string>
    </property>
   </widget>
-  <widget class="QLabel" name="labeNewPatient">
+  <widget class="QPushButton" name="pushButtonToInfo">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>240</y>
-     <width>131</width>
-     <height>17</height>
+     <x>161</x>
+     <y>131</y>
+     <width>141</width>
+     <height>27</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QLabel{
-color:rgb(255,255,255);
+    <string notr="true">QPushButton{
+border-style: outset;
+border-width: 2px;
+    border-radius: 10px;
+background-color: rgb(132,132,132);
+font-size: 25px;
+color: rgb(255,255,255);
 }</string>
    </property>
    <property name="text">
-    <string>Create New Patient</string>
+    <string>To Info</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonNewPatient">
+   <property name="geometry">
+    <rect>
+     <x>257</x>
+     <y>415</y>
+     <width>355</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+border-style: outset;
+border-width: 2px;
+    border-radius: 10px;
+background-color: rgb(132,132,132);
+font-size: 25px;
+color: rgb(255,255,255);
+}</string>
+   </property>
+   <property name="text">
+    <string>Create new Patient</string>
    </property>
   </widget>
  </widget>

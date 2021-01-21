@@ -146,7 +146,7 @@ color: rgb(255,255,255);
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="QPushButton" name="pushButtonSubmitComment">
+         <widget class="QPushButton" name="pushButtonSubmitResults">
           <property name="styleSheet">
            <string notr="true">QPushButton{
 border-style: outset;
@@ -158,7 +158,7 @@ color: rgb(255,255,255);
 }</string>
           </property>
           <property name="text">
-           <string>submit comment</string>
+           <string>Submit Results</string>
           </property>
          </widget>
         </item>

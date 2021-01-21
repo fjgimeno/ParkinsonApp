@@ -8,17 +8,18 @@ import sys
 from lib.chronoUserAPI import Chrono
 from lib.databasemanager import dbMan
 
-class Ui(QWidget):
+class UserLoginDialog(QtWidgets.QDialog):
     databaseName = "parkDataBase.db"
     def __init__(self):
-        super(Ui, self).__init__() # Call the inherited classes __init__ method
+        super(UserLoginDialog, self).__init__() # Call the inherited classes __init__ method
         os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/res")
-        uic.loadUi('LoginUIdef.ui', self) # Load the .ui file
+        uic.loadUi('ui/LoginUIdef.ui', self) # Load the .ui file
         self.createTable()
         self.setupUi()
         #self.show() # Show the GUI
         
     def setupUi(self):
+        self.setWindowTitle("PEA: Sign in")
         pass
         #self.loginButton.clicked.connect(lambda: self.logUser())
         #self.guestButton.clicked.connect(lambda: self.openGuestChrono())

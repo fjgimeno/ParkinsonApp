@@ -15,6 +15,7 @@ class Chrono(QWidget):
     decisecond = 0
     minute = 0
     dni = ""
+    result = ""
     # creating flag 
     flag = False
     dbManager = dbMan()
@@ -23,7 +24,7 @@ class Chrono(QWidget):
         super().__init__()
         os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/res")
         # Importing the UI
-        uic.loadUi('CronometreUIdef.ui', self) # Load the .ui file
+        uic.loadUi('ui/CronometreUIdef.ui', self) # Load the .ui file
         # calling method 
         self.UiComponents()   
         # showing all the widgets 
@@ -40,6 +41,8 @@ class Chrono(QWidget):
         self.pause.pressed.connect(self.Pause) 
         # add action to the method 
         self.re_set.pressed.connect(self.Re_set) 
+        # Saves results and comments
+        self.pushButtonSubmitResults.clicked.connect(lambda: self.save_result())
         # creating a timer object 
         timer = QTimer(self) 
         # adding action to timer 
@@ -89,7 +92,15 @@ class Chrono(QWidget):
                 self.start.setText("Stop")
             elif(self.lapCount >= 3):
                 #GUARDAR RESULTATAS
-                self.save_result()
+                #self.save_result()
+                cont = 1
+                for res in self.lapTimes:
+                    if cont != 3:
+                        self.result = self.result + str(res[0]) + ":" + str(res[1]) + ":" + str(res[2]) + ","
+                        cont = cont + 1
+                    else:
+                        self.result = self.result + str(res[0]) + ":" + str(res[1]) + ":" + str(res[2])
+                cont = 1
                 self.Re_set()
         else:
             self.flag = True
@@ -119,12 +130,12 @@ class Chrono(QWidget):
     def save_result(self):
         print(self.dni)
         result = ""
-        cont = 1
+        '''cont = 1
         for res in self.lapTimes:
             if cont != 3:
                 result = result + str(res[0]) + ":" + str(res[1]) + ":" + str(res[2]) + ","
                 cont = cont + 1
             else:
-                result = result + str(res[0]) + ":" + str(res[1]) + ":" + str(res[2])
-        print (result)
-        # self.dbMananager.createResult(result, self.dni)
+                result = result + str(res[0]) + ":" + str(res[1]) + ":" + str(res[2])'''
+        print (self.result)
+        self.dbManager.createResult(self.result, self.dni, self.commentBox.toPlainText())
