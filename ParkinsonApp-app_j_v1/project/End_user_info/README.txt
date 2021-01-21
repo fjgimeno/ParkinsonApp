@@ -1,5 +1,0 @@
-English:
-
-Español:
-
-Valencià:
