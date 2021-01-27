@@ -42,6 +42,8 @@ class Window(QMainWindow):
         self.homeScreen = Home()
 	
     def toHomeScreen(self):
+        if (self.admin == True):
+            self.setupMenuBar()
         self.setupButtons()
         self.homeScreen = Home()
         self.setCentralWidget(self.homeScreen)
@@ -121,7 +123,7 @@ class Window(QMainWindow):
         #Setups the menu bar
         self.setupMenuBar()
         self.setObjectName("window")
-        self.setStyleSheet("QMainWindow#window {background-color: rgb(32,32,32); background-attachment: fixed}; width: auto; height: auto;")
+        self.setStyleSheet("QMainWindow#window {background-color: rgb(32,32,32); background-image: url('background.jpg'); background-attachment: fixed}; width: auto; height: auto;")
         self.setupButtons()
         
     def setupMenuBar(self):
